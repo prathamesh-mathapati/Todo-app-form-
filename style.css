@@ -1,0 +1,56 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.containe {
+  font-family: "Poppins", sans-serif;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.last {
+  display: flex !important;
+  border: none !important;
+  border-width: 1rem !important;
+  gap: 1rem;
+}
+
+.input-box input {
+  height: 50px;
+  width: 100%;
+  outline: none;
+  border: none;
+}
+.input-box input {
+  font-size: 20px;
+  border-bottom: 1px solid #000000;
+}
+.submit {
+  font-weight: bold;
+  color: white;
+  font-size: 16px !important;
+  width: 15rem !important;
+  height: 3rem !important;
+  border-radius: 27px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-top: 0.5rem;
+  border: none !important;
+  background: linear-gradient(350deg, #8f62e5, #43acfd) !important;
+}
+
+.submit-1 {
+  display: grid;
+  justify-content: center;
+}
+
+.hid {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+  margin: 0 0;
+}
