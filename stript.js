@@ -6,22 +6,10 @@ const roll = document.getElementById("number");
 const name = document.getElementById("fname");
 const submitBtn = document.querySelector(".submit");
 const Data = document.querySelector(".data");
-console.log(Data);
-const AllData = [];
-const oneDta = {};
-console.log(roll.value);
+const storage = document.querySelector(".Storage");
 
-submitBtn.addEventListener("click", () => {
-  oneDta["name"] = name.value;
-  oneDta["Subject"] = nameInput.value;
-  oneDta["Roll_no"] = roll.value;
-  AllData.push(oneDta);
-  AllData.map((ele) => {
-    if (!ele.Roll_no) {
-      alert("fill the from");
-    } else {
-      Data.innerHTML = AllData.map(
-        (user) => `<div>
+const AllData = [];
+const htmlData = (user) => `<div>
         <span class="d-flex">
 
           Name:-
@@ -38,6 +26,12 @@ submitBtn.addEventListener("click", () => {
           <p class="roll">${user.Roll_no}</p></span
         >
 
+
+        <span class="d-flex">
+          Stroge:-
+          <p class="roll">${user.storeg}</p></span
+        >
+
          <form class="">
         <button class="btn btn-outline-primary" type="button">Edite</button>
         <button class="btn btn-outline-danger del" type="button">
@@ -46,9 +40,38 @@ submitBtn.addEventListener("click", () => {
       </form> 
       </div>
 
-     `
-      );
-      // Data.classList.remove("hid");
+     `;
+// console.log(roll.value);
+submitBtn.addEventListener("click", () => {
+  let oneDta = {};
+
+  oneDta["name"] = name.value;
+  oneDta["Subject"] = nameInput.value;
+  oneDta["Roll_no"] = roll.value;
+  oneDta["storeg"] = storage.selectedOptions[0].innerText;
+
+  // AllData.push(JSON.stringify(oneDta));
+  AllData.push(oneDta);
+  let localDatastring1 = localStorage.getItem("data");
+  console.log(localDatastring1);
+
+  window.localStorage.setItem("data", JSON.stringify(AllData));
+  let localDatastring = localStorage.getItem("data");
+  console.log(localDatastring);
+  let localData = JSON.parse(localDatastring);
+  console.log(typeof localData);
+
+  localData.map((ele) => {
+    if (ele.storage === "Local Storage") {
+      if (!ele.Roll_no) {
+        alert("Please fill full from");
+      } else {
+        Data.innerHTML = AllData.map(htmlData);
+        Data.classList.remove("hid");
+      }
+    } else {
+      Data.innerHTML = AllData.map(htmlData);
+      Data.classList.remove("hid");
     }
   });
 });
