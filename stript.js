@@ -52,24 +52,30 @@ submitBtn.addEventListener("click", () => {
 
   // AllData.push(JSON.stringify(oneDta));
   AllData.push(oneDta);
-  let localDatastring1 = localStorage.getItem("data");
-  console.log(localDatastring1);
 
-  window.localStorage.setItem("data", JSON.stringify(AllData));
-  let localDatastring = localStorage.getItem("data");
-  console.log(localDatastring);
-  let localData = JSON.parse(localDatastring);
-  console.log(typeof localData);
-
-  localData.map((ele) => {
+  AllData.map((ele) => {
     if (ele.storage === "Local Storage") {
       if (!ele.Roll_no) {
         alert("Please fill full from");
       } else {
+        let localDatastring1 = localStorage.getItem("data");
+        console.log(localDatastring1);
+        window.localStorage.setItem("data", JSON.stringify(AllData));
+        let localDatastring = localStorage.getItem("data");
+        console.log(localDatastring);
+        let localData = JSON.parse(localDatastring);
+        console.log(typeof localData);
         Data.innerHTML = AllData.map(htmlData);
         Data.classList.remove("hid");
       }
     } else {
+      let localDatastring1 = sessionStorage.getItem("data");
+      console.log(localDatastring1);
+      window.sessionStorage.setItem("data", JSON.stringify(AllData));
+      let localDatastring = sessionStorage.getItem("data");
+      console.log(localDatastring);
+      let localData = JSON.parse(localDatastring);
+      console.log(typeof localData);
       Data.innerHTML = AllData.map(htmlData);
       Data.classList.remove("hid");
     }
