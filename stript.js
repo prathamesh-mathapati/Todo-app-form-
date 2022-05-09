@@ -69,8 +69,9 @@ submitBtn.addEventListener("click", () => {
   AllData.push(oneDta);
 
   AllData.map((ele) => {
-    // console.log(ele);
+    console.log(ele.storage);
     if (ele.storage === "Local Storage") {
+      console.log("jkdsa");
       if (!ele.Roll_no) {
         alert("Please fill full from");
       } else {
@@ -81,13 +82,13 @@ submitBtn.addEventListener("click", () => {
         Data.classList.remove("hid");
       }
     } else {
-      // window.sessionStorage.setItem("data", JSON.stringify(AllData));
-      // let localDatastring = sessionStorage.getItem("data");
+      window.sessionStorage.setItem("data", JSON.stringify(AllData));
+      let localDatastring = sessionStorage.getItem("data");
       // console.log(localDatastring);
-      // let localData = JSON.parse(localDatastring);
+      let localData = JSON.parse(localDatastring);
       // console.log(typeof localData);
-      // Data.innerHTML = AllData.map(htmlData);
-      // Data.classList.remove("hid");
+      Data.innerHTML = AllData.map(htmlData);
+      Data.classList.remove("hid");
     }
   });
 });
