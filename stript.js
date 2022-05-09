@@ -45,12 +45,17 @@ let localDatastring1 = localStorage.getItem("data");
 var arrForlocaldata = [];
 
 try {
-  if (localDatastring1.name === "") {
+  if (localDatastring1.name === " ") {
     console.log("as");
   } else {
     arrForlocaldata.push(JSON.parse(localDatastring1));
     for (i in arrForlocaldata.flat(Infinity)) {
       AllData.push(arrForlocaldata.flat(Infinity)[i]);
+      window.localStorage.setItem("data", JSON.stringify(AllData));
+      let localDatastring = localStorage.getItem("data");
+      let localData = JSON.parse(localDatastring);
+      Data.innerHTML = AllData.map(htmlData);
+      Data.classList.remove("hid");
     }
   }
 } catch {
