@@ -49,14 +49,13 @@ try {
     console.log("as");
   } else {
     arrForlocaldata.push(JSON.parse(localDatastring1));
-    for (i in arrForlocaldata.flat(Infinity)) {
-      AllData.push(arrForlocaldata.flat(Infinity)[i]);
-      window.localStorage.setItem("data", JSON.stringify(AllData));
-      let localDatastring = localStorage.getItem("data");
-      let localData = JSON.parse(localDatastring);
-      Data.innerHTML = AllData.map(htmlData);
-      Data.classList.remove("hid");
+    let ayy1 = [];
+    for (i of arrForlocaldata.flat(Infinity)) {
+      if (i.storage === "Local Storage") ayy1.push(i);
     }
+    console.log(ayy1);
+    Data.innerHTML = ayy1.map(htmlData);
+    Data.classList.remove("hid");
   }
 } catch {
   console.log(98);
@@ -77,24 +76,16 @@ submitBtn.addEventListener("click", () => {
     console.log(ele.storage);
     if (!ele.Roll_no) {
       alert("Please fill full from");
-
-      if (ele.storage === "Local Storage") {
-        console.log("jkdsa");
-      } else {
-        window.localStorage.setItem("data", JSON.stringify(AllData));
-        let localDatastring = localStorage.getItem("data");
-        let localData = JSON.parse(localDatastring);
+    } else {
+      if (ele.storage === "Session Storage") {
+        console.log("section");
+        window.sessionStorage.setItem("data", JSON.stringify(AllData));
         Data.innerHTML = AllData.map(htmlData);
         Data.classList.remove("hid");
+      } else if (ele.storage === "Local Storage") {
+        console.log("local");
+        window.localStorage.setItem("data", JSON.stringify(AllData));
       }
-    } else {
-      window.sessionStorage.setItem("data", JSON.stringify(AllData));
-      let localDatastring = sessionStorage.getItem("data");
-      // console.log(localDatastring);
-      let localData = JSON.parse(localDatastring);
-      // console.log(typeof localData);
-      Data.innerHTML = AllData.map(htmlData);
-      Data.classList.remove("hid");
     }
   });
 });
