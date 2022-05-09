@@ -85,6 +85,10 @@ submitBtn.addEventListener("click", () => {
       } else if (ele.storage === "Local Storage") {
         console.log("local");
         window.localStorage.setItem("data", JSON.stringify(AllData));
+        Data.innerHTML = AllData.map(htmlData);
+        Data.classList.remove("hid");
+      } else {
+        document.cookie = JSON.stringify(AllData);
       }
     }
   });
