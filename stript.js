@@ -75,10 +75,11 @@ submitBtn.addEventListener("click", () => {
 
   AllData.map((ele) => {
     console.log(ele.storage);
-    if (ele.storage === "Local Storage") {
-      console.log("jkdsa");
-      if (!ele.Roll_no) {
-        alert("Please fill full from");
+    if (!ele.Roll_no) {
+      alert("Please fill full from");
+
+      if (ele.storage === "Local Storage") {
+        console.log("jkdsa");
       } else {
         window.localStorage.setItem("data", JSON.stringify(AllData));
         let localDatastring = localStorage.getItem("data");
