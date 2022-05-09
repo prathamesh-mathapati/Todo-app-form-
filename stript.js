@@ -34,7 +34,7 @@ const htmlData = (user) => `<div>
 
          <form class="">
         <button class="btn btn-outline-primary" type="button">Edite</button>
-        <button class="btn btn-outline-danger del" type="button">
+        <button class="btn btn-outline-danger" id="del" type="button">
           Delete
         </button>
       </form> 
@@ -60,6 +60,7 @@ try {
 } catch {
   console.log(98);
 }
+var AllSudentRollNo = [];
 
 submitBtn.addEventListener("click", () => {
   let oneDta = {};
@@ -69,11 +70,17 @@ submitBtn.addEventListener("click", () => {
   oneDta["Roll_no"] = roll.value;
   oneDta["storage"] = storage.selectedOptions[0].innerText;
 
-  // AllData.push(JSON.stringify(oneDta));
   AllData.push(oneDta);
+  // console.log(AllSudentRollNo);
+  // AllSudentRollNo.push(oneDta.Roll_no);
 
+  // for (i of AllSudentRollNo) {
+  //   if (AllSudentRollNo.includes(i)) {
+  //     alert("This roll no is allredy exits, try another roll no");
+  //   }
+  // }
   AllData.map((ele) => {
-    console.log(ele.storage);
+    console.log(!ele.Roll_no);
     if (!ele.Roll_no) {
       alert("Please fill full from");
     } else {
@@ -93,9 +100,9 @@ submitBtn.addEventListener("click", () => {
     }
   });
 });
-// const deleteBtn = document.querySelector(".del");
-// console.log(del);
+const deleteBtn = document.querySelector("#del");
+console.log(del);
 
-// deleteBtn.addEventListener("click", () => {
-//   Data.classList.add("hid");
-// });
+deleteBtn.addEventListener("click", () => {
+  Data.classList.add("hid");
+});
