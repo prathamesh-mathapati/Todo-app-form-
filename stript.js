@@ -44,14 +44,17 @@ const htmlData = (user) => `<div>
 let localDatastring1 = localStorage.getItem("data");
 var arrForlocaldata = [];
 
-if (localDatastring1.name === "") {
-  console.log("as");
-} else {
-  arrForlocaldata.push(JSON.parse(localDatastring1));
-  for (i in arrForlocaldata.flat(Infinity)) {
-    AllData.push(arrForlocaldata.flat(Infinity)[i]);
-    console.log(AllData);
+try {
+  if (localDatastring1.name === "") {
+    console.log("as");
+  } else {
+    arrForlocaldata.push(JSON.parse(localDatastring1));
+    for (i in arrForlocaldata.flat(Infinity)) {
+      AllData.push(arrForlocaldata.flat(Infinity)[i]);
+    }
   }
+} catch {
+  console.log(98);
 }
 
 submitBtn.addEventListener("click", () => {
