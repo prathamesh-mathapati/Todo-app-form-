@@ -9,6 +9,9 @@ const Data = document.querySelector(".data");
 const storage = document.querySelector(".Storage");
 
 let AllData = [];
+let AllDatalocal = [];
+let AllDatasectoin = [];
+let AllDatac = [];
 const htmlData = (user) => `<div class="colour  h p-5" >
         <span class="d-flex ">
 
@@ -33,7 +36,7 @@ const htmlData = (user) => `<div class="colour  h p-5" >
         >
 
          <form class="">
-        <button class="btn btn-outline-primary" type="button">Edite</button>
+        <button class="btn btn-outline-primary" type="button">Edit</button>
         <button class="btn btn-outline-danger" id="del" type="button""
         >
           Delete
@@ -45,73 +48,101 @@ const htmlData = (user) => `<div class="colour  h p-5" >
 let localDatastring1 = localStorage.getItem("data");
 var arrForlocaldata = [];
 
+let sectionData = JSON.parse(sessionStorage.getItem("data"));
+// arrForlocaldata.push(JSON.parse(localDatastring1));
+
+// console.log(JSON.parse(sectionData), "    ssss");
+// console.log(sectionData);
+Data.classList.remove("hid");
+
+// Data.innerHTML = ayy1.map(htmlData);
+// Data.classList.remove("hid");
+
+// arrForlocaldata.push(JSON.parse(sectionData));
+
 try {
-  if (localDatastring1.name === " ") {
-    console.log("as");
-  } else {
-    arrForlocaldata.push(JSON.parse(localDatastring1));
-    let ayy1 = [];
-    for (i of arrForlocaldata.flat(Infinity)) {
-      if (i.storage === "Local Storage") ayy1.push(i);
-    }
-    console.log(ayy1);
-    Data.innerHTML = ayy1.map(htmlData);
-    Data.classList.remove("hid");
-  }
+  // if (localDatastring1.name === " " || localDatastring1.name === null) {
+  //   console.log("as");
+  // } else {
+
+  arrForlocaldata.push(JSON.parse(localDatastring1));
+  arrForlocaldata.push(sectionData);
+  // console.log(arrForlocaldata.flat(Infinity));
+  let ayy1 = arrForlocaldata.flat(Infinity);
+  if (ayy1.includes(null)) delete ayy1[ayy1.indexOf(null)];
+  console.log(ayy1);
+  Data.innerHTML = ayy1.map(htmlData);
+
+  // }
 } catch {
+  location.reload();
+
   console.log(98);
 }
 var AllSudentRollNo = [];
 
+let a = [];
 submitBtn.addEventListener("click", () => {
+  // Data.innerHTML = ayy1.map(htmlData);
+
+  if (!roll.value || !name.value || !nameInput) {
+    alert("Please fill full from");
+  }
   let oneDta = {};
 
-  oneDta["name"] = name.value;
-  oneDta["Subject"] = nameInput.value;
-  oneDta["Roll_no"] = roll.value;
-  oneDta["storage"] = storage.selectedOptions[0].innerText;
+  // function w1
 
-  AllData.push(oneDta);
-  // console.log(AllSudentRollNo);
-  // AllSudentRollNo.push(oneDta.Roll_no);
+  if (a.includes(roll.value)) {
+    alert("This roll no is allredy exits, try another roll no");
+  } else {
+    // for (i of ayy1) {
+    //   AllData.push(i);
+    // }
+    if (storage.selectedOptions[0].innerText === "Local Storage") {
+      oneDta["name"] = name.value;
+      oneDta["Subject"] = nameInput.value;
+      oneDta["Roll_no"] = roll.value;
+      oneDta["storage"] = storage.selectedOptions[0].innerText;
+      AllDatalocal.push(oneDta);
+      AllData.push(oneDta);
 
-  // for (i of AllSudentRollNo) {
-  //   if (AllSudentRollNo.includes(i)) {
-  //     alert("This roll no is allredy exits, try another roll no");
-  //   }
-  // }
+      console.log("loc");
+      // AllData = [];
+    } else if (storage.selectedOptions[0].innerText === "Session Storage") {
+      oneDta["name"] = name.value;
+      oneDta["Subject"] = nameInput.value;
+      oneDta["Roll_no"] = roll.value;
+      oneDta["storage"] = storage.selectedOptions[0].innerText;
+      AllData.push(oneDta);
+
+      AllDatasectoin.push(oneDta);
+    }
+    a.push(roll.value);
+  }
+
   AllData.map((ele) => {
-    console.log(!ele.Roll_no);
-    if (!ele.Roll_no) {
-      alert("Please fill full from");
+    console.log(ele);
+    console.log(a.includes(ele.Roll_no));
+    AllSudentRollNo.push(ele.Roll_no);
+
+    if (ele.storage === "Local Storage") {
+      console.log("local");
+      window.localStorage.setItem("data", JSON.stringify(AllDatalocal));
+      Data.innerHTML = AllData.map(htmlData);
+      console.log(AllDatalocal, AllData, "local");
+
+      Data.classList.remove("hid");
+    } else if (ele.storage === "Session Storage") {
+      console.log("section");
+      window.sessionStorage.setItem("data", JSON.stringify(AllDatasectoin));
+      // AllData.push(oneDta);
+      Data.innerHTML = AllData.map(htmlData);
+      Data.classList.remove("hid");
+      console.log(AllDatasectoin, AllData, "section");
     } else {
-      if (ele.storage === "Session Storage") {
-        console.log("section");
-        window.sessionStorage.setItem("data", JSON.stringify(AllData));
-        Data.innerHTML = AllData.map(htmlData);
-        Data.classList.remove("hid");
-      } else if (ele.storage === "Local Storage") {
-        console.log("local");
-        window.localStorage.setItem("data", JSON.stringify(AllData));
-        Data.innerHTML = AllData.map(htmlData);
-        Data.classList.remove("hid");
-      } else {
-        document.cookie = JSON.stringify(AllData);
-      }
+      document.cookie = JSON.stringify(AllData);
     }
   });
+  location.reload();
 });
 const deleteBtn = document.querySelector("#del");
-console.log(del);
-
-// function fun(user) {
-//   console.log("gggggg");
-//   const newArr = AllData.filter((item) => item.Roll_no !== user.Roll_no);
-//   AllData = newArr;
-// }
-
-// deleteBtn.addEventListener("click", fun);
-
-deleteBtn.addEventListener("click", () => {
-  Data.classList.add("hid");
-});
