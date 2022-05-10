@@ -9,7 +9,7 @@ const Data = document.querySelector(".data");
 const storage = document.querySelector(".Storage");
 
 let AllData = [];
-const htmlData = (user) => `<div class="colour  h-75 p-5" >
+const htmlData = (user) => `<div class="colour  h p-5" >
         <span class="d-flex ">
 
           Name:-
