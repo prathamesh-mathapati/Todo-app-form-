@@ -8,9 +8,9 @@ const submitBtn = document.querySelector(".submit");
 const Data = document.querySelector(".data");
 const storage = document.querySelector(".Storage");
 
-const AllData = [];
-const htmlData = (user) => `<div>
-        <span class="d-flex">
+let AllData = [];
+const htmlData = (user) => `<div class="colour  h-75 p-5" >
+        <span class="d-flex ">
 
           Name:-
           <p class="name">${user.name}</p></span
@@ -34,7 +34,8 @@ const htmlData = (user) => `<div>
 
          <form class="">
         <button class="btn btn-outline-primary" type="button">Edite</button>
-        <button class="btn btn-outline-danger" id="del" type="button">
+        <button class="btn btn-outline-danger" id="del" type="button""
+        >
           Delete
         </button>
       </form> 
@@ -102,6 +103,14 @@ submitBtn.addEventListener("click", () => {
 });
 const deleteBtn = document.querySelector("#del");
 console.log(del);
+
+// function fun(user) {
+//   console.log("gggggg");
+//   const newArr = AllData.filter((item) => item.Roll_no !== user.Roll_no);
+//   AllData = newArr;
+// }
+
+// deleteBtn.addEventListener("click", fun);
 
 deleteBtn.addEventListener("click", () => {
   Data.classList.add("hid");
