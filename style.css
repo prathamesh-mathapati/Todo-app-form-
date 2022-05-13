@@ -8,8 +8,6 @@
   font-family: "Poppins", sans-serif;
   border-radius: 25px;
   display: flex;
-  /* justify-content: center; */
-  /* align-items: center; */
 }
 
 .colour {
@@ -55,7 +53,9 @@
   display: grid;
   justify-content: center;
 }
-
+.hover1 :hover {
+  transform: scale(1.02);
+}
 .hid {
   position: absolute;
   top: -9999px;
