@@ -1,64 +1,85 @@
 * {
-  padding: 0;
   margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
   box-sizing: border-box;
 }
 
-.containe {
-  font-family: "Poppins", sans-serif;
-  border-radius: 25px;
+body {
+  font-family: sans-serif;
+  color: #333;
+  line-height: 1.5;
+  height: 100vh;
+  position: relative;
   display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  background: linear-gradient(to top left, #28b487, #7dd56f);
 }
 
-.colour {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  border-radius: 25px;
-}
-.h {
-  height: 19rem;
-}
-.last {
-  display: flex !important;
-  border: none !important;
-  border-width: 1rem !important;
-  gap: 1rem;
-}
-
-.input-box input {
-  height: 50px;
-  width: 100%;
-  outline: none;
+.show-modal {
+  font-size: 2rem;
+  font-weight: 600;
+  padding: 1.75rem 3.5rem;
+  margin: 5rem 2rem;
   border: none;
-}
-.input-box input {
-  font-size: 20px;
-  border-bottom: 1px solid #000000;
-}
-.submit {
-  font-weight: bold;
-  color: white;
-  font-size: 16px !important;
-  width: 15rem !important;
-  height: 3rem !important;
-  border-radius: 27px;
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  margin-top: 0.5rem;
-  border: none !important;
-  background: linear-gradient(350deg, #8f62e5, #43acfd) !important;
+  background-color: #fff;
+  color: #444;
+  border-radius: 10rem;
+  cursor: pointer;
 }
 
-.submit-1 {
-  display: grid;
-  justify-content: center;
-}
-.hover1 :hover {
-  transform: scale(1.02);
-}
-.hid {
+.close-modal {
   position: absolute;
-  top: -9999px;
-  left: -9999px;
-  margin: 0 0;
+  top: 1.2rem;
+  right: 2rem;
+  font-size: 5rem;
+  color: #333;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+p {
+  font-size: 1.8rem;
+}
+
+/* -------------------------- */
+/* CLASSES TO MAKE MODAL WORK */
+.hidden {
+  display: none;
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+
+  background-color: white;
+  padding: 6rem;
+  border-radius: 5px;
+  box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
+  z-index: 10;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(3px);
+  z-index: 5;
 }
