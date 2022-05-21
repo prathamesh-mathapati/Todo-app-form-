@@ -98,8 +98,55 @@
         </div>
       </form>
     </div>
+    <section class="editCard overlay hidden">
+      <div class="containe d-flex justify-content-center container-fluid">
+        <form action="#" class="">
+          <div class="input-box m-5 bg d-flex flex-column gap-2 colour p-5">
+            <div class="myname">
+              <label for="fname">First Name</label>
+              <input
+                onchange="(e)=>console.log(e.target.value)"
+                type="text"
+                id="fname"
+                placeholder="Enter name:-"
+                required
+              />
+            </div>
 
-    <section class="container-fluid data d-flex gap-5 flex-wrap"></section>
+            <div class="myname">
+              <label for="SSN">Subject</label>
+              <input
+                type="text"
+                id="SSN"
+                placeholder="Enter Subject:-"
+                required
+              />
+            </div>
+
+            <div class="myname">
+              <label for="Zipcode">Roll no</label>
+              <input
+                type="number"
+                id="number"
+                placeholder="Enter Roll no:-"
+                required
+              />
+            </div>
+
+            <div class="submit-1 save hover1" id="sb">
+              <input class="submit" type="submit" value="Save" />
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section
+      class="container-fluid data d-flex gap-5 flex-wrap hover1"
+    ></section>
+
+    <div class="overlay hidden"></div>
+
     <script src="./stript.js"></script>
   </body>
 </html>
