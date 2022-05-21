@@ -1,93 +1,115 @@
 "use script";
 
+var AllSudentRollNo = [];
+var arrForlocaldata = [];
 const nameInput = document.getElementById("SSN");
 const roll = document.getElementById("number");
 const name = document.getElementById("fname");
 const submitBtn = document.querySelector(".submit");
 const Data = document.querySelector(".data");
 const storage = document.querySelector(".Storage");
+let editCard = document.querySelector(".editCard");
+let saveBtn = document.querySelector(".save");
 
+let localDatastring1 = JSON.parse(localStorage.getItem("data"));
+let sectionData = JSON.parse(sessionStorage.getItem("data"));
+let cookieData = document.cookie;
 let AllData = [];
 let AllDatalocal = [];
 let AllDatasectoin = [];
 let AllDatac = [];
-let AllData1 = [];
 let relode = () => {
-  console.log(0);
+  //  console.log(0);
   location.reload();
 };
-const htmlData = (user) => `<div class="colour hover1 h p-5" >
+document.cookie = [];
+console.log(saveBtn);
+
+console.log(cookieData);
+const htmlData = (user) => `<div class="contain-hover">
+<div class="colour hover1 h p-5" >
         <span class="d-flex ">
-
-          Name:-
-          <p class="name">${user.name}</p></span
+        Name:-
+        <p class="name">${user.name}</p></span
         >
-
+        
         <span class="d-flex">
-          Subject:-
-          <p class="subject">${user.Subject}</p></span
+        Subject:-
+        <p class="subject">${user.Subject}</p></span
         >
 
         <span class="d-flex">
           Roll no:-
           <p class="roll">${user.Roll_no}</p></span
-        >
+          >
 
 
         <span class="d-flex">
-          Stroge:-
-          <p class="roll">${user.storage}</p></span
+        Stroge:-
+        <p class="roll">${user.storage}</p></span
         >
-
-         <form class="">
-        <button class="btn btn-outline-primary" type="button">Edit</button>
-        <button class="btn btn-outline-danger" id="del" type="button""
+        
+        <form class="">
+        <button class="btn btn-outline-primary" onclick="editDaata(this)" data-rollno='${user.Roll_no}' type="button">Edit</button>
+        <button class="btn btn-outline-danger" onclick="DeleteData(this)" data-rollno="${user.Roll_no}" type="button""
         >
           Delete
         </button>
       </form> 
       </div>
+      </div>
+      
+      `;
+const editDaata = (data) => {
+  const roll_no = data.dataset.rollno;
+  console.log(roll_no);
+  editCard.classList.remove("hidden");
+  editCard.classList.add("overlay");
 
-     `;
-let localDatastring1 = JSON.parse(localStorage.getItem("data"));
-var arrForlocaldata = [];
-let sectionData = JSON.parse(sessionStorage.getItem("data"));
+  saveBtn.addEventListener("click", () => {
+    editCard.classList.add("hidden");
+    editCard.classList.remove("overlay");
+  });
+  // if(localDatastring1==null)
+};
 
-console.log(localDatastring1);
-console.log(sectionData);
-
-var AllSudentRollNo = [];
-let l = 0;
-let s = 0;
+const DeleteData = (data) => {
+  const roll_no = data.dataset.rollno;
+  const deleteObj = AllData.find((item) => item.Roll_no === roll_no);
+  if (deleteObj.storage === "Local Storage") {
+    // console.log("ffsfsf");
+    const newLocalSorage = [...localDatastring1];
+    localStorage.removeItem("data");
+    const newArr = newLocalSorage.filter((item) => item.Roll_no !== roll_no);
+    window.localStorage.setItem("data", JSON.stringify(newArr));
+    AllData = AllData.filter((item) => item.Roll_no !== roll_no);
+    Data.innerHTML = AllData.map(htmlData);
+  } else if (deleteObj.storage === "Session Storage") {
+    const newLocalSorage = [...sectionData];
+    console.log(newLocalSorage);
+    sessionStorage.removeItem("data");
+    const newArr = newLocalSorage.filter((item) => item.Roll_no !== roll_no);
+    window.sessionStorage.setItem("data", JSON.stringify(newArr));
+    AllData = AllData.filter((item) => item.Roll_no !== roll_no);
+    Data.innerHTML = AllData.map(htmlData);
+  } else if (deleteObj === "Cookie Storage") {
+    //  const newLocalSorage = [...];
+  }
+};
 
 try {
   if (localDatastring1 !== null) {
-    l = localDatastring1;
     for (i of localDatastring1) {
-      AllData1.push(i);
+      AllData.push(i);
     }
+    Data.innerHTML = AllData.map(htmlData);
   }
   if (sectionData !== null) {
-    s = sectionData;
     for (i of sectionData) {
-      AllData1.push(i);
+      AllData.push(i);
     }
+    Data.innerHTML = AllData.map(htmlData);
   }
-  Data.innerHTML = AllData1.map(htmlData);
-
-  // if (localDatastring1.name === " " || localDatastring1.name === null) {
-  //   console.log("as");
-  // } else {
-  //   arrForlocaldata.push(localDatastring1);
-
-  // let ayy1 = [];
-  // for (i of arrForlocaldata.flat(Infinity)) {
-  //   if (i.storage === "Local Storage") ayy1.push(i);
-  // }
-  console.log(l, s);
-  console.log(AllData1, "all");
-
-  // }
 } catch (err) {
   console.log(err);
 }
@@ -99,52 +121,46 @@ submitBtn.addEventListener("click", () => {
     alert("Please fill full from");
   }
   let oneDta = {};
+  let AddData = () => {
+    oneDta["name"] = name.value;
+    oneDta["Subject"] = nameInput.value;
+    oneDta["Roll_no"] = roll.value;
+    oneDta["storage"] = storage.selectedOptions[0].innerText;
+  };
 
   if (a.includes(roll.value)) {
     alert("This roll no is allredy exits, try another roll no");
   } else {
     if (storage.selectedOptions[0].innerText === "Local Storage") {
-      oneDta["name"] = name.value;
-      oneDta["Subject"] = nameInput.value;
-      oneDta["Roll_no"] = roll.value;
-      oneDta["storage"] = storage.selectedOptions[0].innerText;
+      AddData();
       AllDatalocal.push(oneDta);
-      let a = [...AllDatalocal, ...l];
+      AllData.push(oneDta);
       console.log(a, "1999");
-      window.localStorage.setItem("data", JSON.stringify(a));
+      window.localStorage.setItem("data", JSON.stringify(AllDatalocal));
       console.log(AllDatalocal, "local");
+      Data.innerHTML = AllData.map(htmlData);
+
       // }
-    } else if (storage.selectedOptions[0].innerText === "Session Storage") {
-      oneDta["name"] = name.value;
-      oneDta["Subject"] = nameInput.value;
-      oneDta["Roll_no"] = roll.value;
-      oneDta["storage"] = storage.selectedOptions[0].innerText;
+    }
+    if (storage.selectedOptions[0].innerText === "Session Storage") {
+      AddData();
       AllDatasectoin.push(oneDta);
+      AllData.push(oneDta);
+
       window.sessionStorage.setItem("data", JSON.stringify(AllDatasectoin));
       console.log(AllDatasectoin, "section");
+      Data.innerHTML = AllData.map(htmlData);
+    }
+
+    if (storage.selectedOptions[0].innerText === "Cookie Storage") {
+      AddData();
+      AllData.push(oneDta);
+
+      AllDatac.push(oneDta);
+      document.cookie = JSON.stringify(AllDatac);
+      Data.innerHTML = AllData.map(htmlData);
     }
     a.push(roll.value);
   }
-
-  // console.log(a);
-  AllData.map((ele) => {
-    console.log(a.includes(ele.Roll_no));
-    // console.log(ele, "thats called ele");
-    AllSudentRollNo.push(ele.Roll_no);
-
-    if (ele.storage === "Local Storage") {
-      Data.innerHTML = AllDatalocal.map(htmlData);
-      console.log("local");
-      Data.classList.remove("hid");
-    } else if (ele.storage === "Session Storage") {
-      Data.innerHTML = AllDatasectoin.map(htmlData);
-
-      console.log("section");
-      Data.classList.remove("hid");
-    } else {
-      document.cookie = JSON.stringify(AllData);
-    }
-  });
+  AllSudentRollNo.push(oneDta.Roll_no);
 });
-
-const deleteBtn = document.querySelector("#del");
