@@ -102,35 +102,49 @@
       <div class="containe d-flex justify-content-center container-fluid">
         <form action="#" class="">
           <div class="input-box m-5 bg d-flex flex-column gap-2 colour p-5">
-            <div class="myname">
-              <label for="fname">First Name</label>
+            <div class="name">
+              <label for="name">First Name</label>
               <input
                 onchange="(e)=>console.log(e.target.value)"
                 type="text"
-                id="fname"
+                id="name"
                 placeholder="Enter name:-"
                 required
               />
             </div>
 
-            <div class="myname">
+            <div class="subject">
               <label for="SSN">Subject</label>
               <input
                 type="text"
-                id="SSN"
+                id="subject"
                 placeholder="Enter Subject:-"
                 required
               />
             </div>
 
-            <div class="myname">
+            <div class="roll">
               <label for="Zipcode">Roll no</label>
               <input
                 type="number"
-                id="number"
+                id="roll"
                 placeholder="Enter Roll no:-"
                 required
               />
+            </div>
+
+            <div class="myname d-flex flex-column">
+              <label for="USA">Storage</label>
+              <select
+                class="border-white bg-white fs-5 text-secondary storage"
+                name=""
+                id=""
+              >
+                <option value="">select</option>
+                <option value="">Local Storage</option>
+                <option value="">Session Storage</option>
+                <option value="">Cookie Storage</option>
+              </select>
             </div>
 
             <div class="submit-1 save hover1" id="sb">

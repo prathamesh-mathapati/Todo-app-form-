@@ -19,19 +19,15 @@ let AllDatalocal = [];
 let AllDatasectoin = [];
 let AllDatac = [];
 let relode = () => {
-  //  console.log(0);
   location.reload();
 };
 document.cookie = [];
-console.log(saveBtn);
 
-console.log(cookieData);
 const htmlData = (user) => `<div class="contain-hover">
 <div class="colour hover1 h p-5" >
         <span class="d-flex ">
         Name:-
-        <p class="name">${user.name}</p></span
-        >
+        <p class="name">${user.name}</p></span>
         
         <span class="d-flex">
         Subject:-
@@ -62,22 +58,61 @@ const htmlData = (user) => `<div class="contain-hover">
       `;
 const editDaata = (data) => {
   const roll_no = data.dataset.rollno;
-  console.log(roll_no);
   editCard.classList.remove("hidden");
   editCard.classList.add("overlay");
+  const name1 = document.getElementById("name");
+  const roll1 = document.getElementById("roll");
+  const subject2 = document.getElementById("subject");
+  const storage = document.querySelector(".storage");
+
+  let oneDta = {};
+  let AddData = () => {
+    oneDta["name"] = name1.value;
+    oneDta["Subject"] = subject2.value;
+    oneDta["Roll_no"] = roll1.value;
+    oneDta["storage"] = storage.selectedOptions[0].innerText;
+  };
 
   saveBtn.addEventListener("click", () => {
+    console.log(roll1.value);
     editCard.classList.add("hidden");
     editCard.classList.remove("overlay");
+
+    const deleteObj = AllData.find((item) => item.Roll_no === roll_no);
+    // console.log(deleteObj.storage);
+    if (deleteObj.storage === "Local Storage") {
+      AddData();
+      const newLocalSorage = [...localDatastring1];
+      localStorage.removeItem("data");
+      const newArr = newLocalSorage.filter((item) => item.Roll_no !== roll_no);
+      newArr.push(oneDta);
+      console.log(newArr);
+      window.localStorage.setItem("data", JSON.stringify(newArr));
+      AllData = AllData.filter((item) => item.Roll_no !== roll_no);
+
+      Data.innerHTML = AllData.map(htmlData);
+    } else if (deleteObj.storage === "Session Storage") {
+      AddData();
+
+      const newLocalSorage = [...sectionData];
+      console.log(newLocalSorage);
+      sessionStorage.removeItem("data");
+      const newArr = newLocalSorage.filter((item) => item.Roll_no !== roll_no);
+      newArr.push(oneDta);
+
+      window.sessionStorage.setItem("data", JSON.stringify(newArr));
+      AllData = AllData.filter((item) => item.Roll_no !== roll_no);
+      Data.innerHTML = AllData.map(htmlData);
+    } else if (deleteObj === "Cookie Storage") {
+      //  const newLocalSorage = [...];
+    }
   });
-  // if(localDatastring1==null)
 };
 
 const DeleteData = (data) => {
   const roll_no = data.dataset.rollno;
   const deleteObj = AllData.find((item) => item.Roll_no === roll_no);
   if (deleteObj.storage === "Local Storage") {
-    // console.log("ffsfsf");
     const newLocalSorage = [...localDatastring1];
     localStorage.removeItem("data");
     const newArr = newLocalSorage.filter((item) => item.Roll_no !== roll_no);
