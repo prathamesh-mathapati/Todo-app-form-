@@ -94,7 +94,6 @@ const editDaata = (data) => {
   name1.value = deleteOb.name;
   subject2.value = deleteOb.Subject;
   roll1.value = deleteOb.Roll_no;
-  storage.selectedOptions[0].innerText = deleteOb.storage
 
   saveBtn.addEventListener("click", () => {
     // console.log(roll1.value);
@@ -102,18 +101,19 @@ const editDaata = (data) => {
     editCard.classList.remove("overlay");
 
     console.log(roll1.value);
-    // if (sumroll.includes(roll1.value)) {
 
-    //   console.log('wertyjk');
-    // } else {
-    //   console.log('wertjk87654');
-    //   sumroll.push(roll1.value)
-    // }
     const deleteObj = AllData.find((item) => item.Roll_no === roll_no);
-    // console.log(deleteObj);
     if (!roll1.value || !name1 || !storage) {
       alert('Please fill full from')
     } else {
+      // const chake = () => {
+      //   if (storage.selectedOptions[0].innerText==="Local Storage"){
+
+      //   }
+      // }
+
+
+
       if (deleteObj.storage === "Local Storage") {
         AddData();
         const newLocalSorage = [...localDatastring1];
