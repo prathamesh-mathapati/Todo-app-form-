@@ -73,6 +73,7 @@ const editDaata = (data) => {
   const roll1 = document.getElementById("roll");
   const subject2 = document.getElementById("subject");
   const storage = document.querySelector(".storage");
+  let sumroll = JSON.parse(localStorage.getItem("Allroll"));
 
   let oneDta = {};
   let AddData = () => {
@@ -80,6 +81,13 @@ const editDaata = (data) => {
     oneDta["Subject"] = subject2.value;
     oneDta["Roll_no"] = roll1.value;
     oneDta["storage"] = storage.selectedOptions[0].innerText;
+
+    if (sumroll.includes(roll1.value)) {
+
+      alert("This roll no is allredy exits, try another roll no");
+    }
+    sumroll.push(roll1.value)
+
   };
   const deleteOb = AllData.find((item) => item.Roll_no === roll_no);
   console.log(deleteOb);
@@ -93,15 +101,19 @@ const editDaata = (data) => {
     editCard.classList.add("hidden");
     editCard.classList.remove("overlay");
 
+    console.log(roll1.value);
+    // if (sumroll.includes(roll1.value)) {
+
+    //   console.log('wertyjk');
+    // } else {
+    //   console.log('wertjk87654');
+    //   sumroll.push(roll1.value)
+    // }
     const deleteObj = AllData.find((item) => item.Roll_no === roll_no);
     // console.log(deleteObj);
-
-
     if (!roll1.value || !name1 || !storage) {
       alert('Please fill full from')
     } else {
-
-
       if (deleteObj.storage === "Local Storage") {
         AddData();
         const newLocalSorage = [...localDatastring1];
@@ -120,9 +132,7 @@ const editDaata = (data) => {
         console.log(newLocalSorage);
         sessionStorage.removeItem("data");
         const newArr = newLocalSorage.filter((item) => item.Roll_no !== roll_no);
-        console.log(oneDta);
         newArr.push(oneDta);
-        console.log(newArr);
 
         window.sessionStorage.setItem("data", JSON.stringify(newArr));
         AllData = AllData.filter((item) => item.Roll_no !== roll_no);
@@ -244,4 +254,5 @@ submitBtn.addEventListener("click", () => {
     a.push(roll.value);
   }
   AllSudentRollNo.push(oneDta.Roll_no);
+  window.localStorage.setItem("Allroll", JSON.stringify(AllSudentRollNo));
 });
