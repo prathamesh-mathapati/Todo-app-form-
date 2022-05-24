@@ -81,14 +81,21 @@ const editDaata = (data) => {
     oneDta["Roll_no"] = roll1.value;
     oneDta["storage"] = storage.selectedOptions[0].innerText;
   };
+  const deleteOb = AllData.find((item) => item.Roll_no === roll_no);
+  console.log(deleteOb);
+  name1.value = deleteOb.name;
+  subject2.value = deleteOb.Subject;
+  roll1.value = deleteOb.Roll_no;
+  storage.selectedOptions[0].innerText = deleteOb.storage
 
   saveBtn.addEventListener("click", () => {
-    console.log(roll1.value);
+    // console.log(roll1.value);
     editCard.classList.add("hidden");
     editCard.classList.remove("overlay");
 
     const deleteObj = AllData.find((item) => item.Roll_no === roll_no);
     // console.log(deleteObj);
+
 
     if (!roll1.value || !name1 || !storage) {
       alert('Please fill full from')
