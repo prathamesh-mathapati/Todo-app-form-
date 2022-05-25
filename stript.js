@@ -118,103 +118,112 @@ const editDaata = (data) => {
 
 
   saveBtn.addEventListener("click", () => {
+    A = []
+    AllData.filter(item => { A.push(item.Roll_no) })
+    console.log(A);
 
-
-    if (!roll1.value || !name1.value || !storage.value) {
-      alert('Please fill full from')
+    if (a.includes(roll1.value)) {
+      alert('This roll no is allredy exits, try another roll no')
     } else {
-      editCard.classList.add("hidden");
-      editCard.classList.remove("overlay");
 
 
-      if (deleteObj.storage === "Local Storage") {
-        const newLocalSorage = [...localDatastring1];
-        localStorage.removeItem("data");
-        const newArr = newLocalSorage.filter((item) => item.Roll_no !== roll_no);
-        window.localStorage.setItem("data", JSON.stringify(newArr));
-        AllData = AllData.filter((item) => item.Roll_no !== roll_no);
-        // Data.innerHTML = AllData.map(htmlData);
-      } else if (deleteObj.storage === "Session Storage") {
-        const newLocalSorage = [...sectionData];
-        // console.log(newLocalSorage);
-        sessionStorage.removeItem("data");
-        const newArr = newLocalSorage.filter((item) => item.Roll_no !== roll_no);
-        window.sessionStorage.setItem("data", JSON.stringify(newArr));
-        AllData = AllData.filter((item) => item.Roll_no !== roll_no);
-        // Data.innerHTML = AllData.map(htmlData);
-      } else if (deleteObj.storage === "Cookie Storage") {
-        const newLocalSorage = [...AllDatac];
-        // console.log(newLocalSorage);
-        deleteAllCookies()
+      if (!roll1.value || !name1.value || !storage.value) {
+        alert('Please fill full from')
+      } else {
 
-        const newArr = newLocalSorage.filter((item) => item.Roll_no !== roll_no);
-        document.cookie = JSON.stringify(newArr);
-        AllData = AllData.filter((item) => item.Roll_no !== roll_no);
-        // Data.innerHTML = AllData.map(htmlData);
+        editCard.classList.add("hidden");
+        editCard.classList.remove("overlay");
+
+
+        if (deleteObj.storage === "Local Storage") {
+          const newLocalSorage = [...localDatastring1];
+          localStorage.removeItem("data");
+          const newArr = newLocalSorage.filter((item) => item.Roll_no !== roll_no);
+          window.localStorage.setItem("data", JSON.stringify(newArr));
+          AllData = AllData.filter((item) => item.Roll_no !== roll_no);
+          // Data.innerHTML = AllData.map(htmlData);
+        } else if (deleteObj.storage === "Session Storage") {
+          const newLocalSorage = [...sectionData];
+          // console.log(newLocalSorage);
+          sessionStorage.removeItem("data");
+          const newArr = newLocalSorage.filter((item) => item.Roll_no !== roll_no);
+          window.sessionStorage.setItem("data", JSON.stringify(newArr));
+          AllData = AllData.filter((item) => item.Roll_no !== roll_no);
+          // Data.innerHTML = AllData.map(htmlData);
+        } else if (deleteObj.storage === "Cookie Storage") {
+          const newLocalSorage = [...AllDatac];
+          // console.log(newLocalSorage);
+          deleteAllCookies()
+
+          const newArr = newLocalSorage.filter((item) => item.Roll_no !== roll_no);
+          document.cookie = JSON.stringify(newArr);
+          AllData = AllData.filter((item) => item.Roll_no !== roll_no);
+          // Data.innerHTML = AllData.map(htmlData);
+        }
+
+
+
+
+
+
+
+
+
+
+        if (storage.value === "Local Storage") {
+          AddData()
+          const newLocalSorage = [...localDatastring1];
+          const newArr = newLocalSorage.filter((item) => item.Roll_no !== roll_no);
+          newArr.push(oneDta)
+          AllData.push(oneDta)
+
+          window.localStorage.setItem("data", JSON.stringify(newArr));
+
+          console.log(newLocalSorage, 'werhjk');
+          // AllData = AllData.filter((item) => item.Roll_no !== roll_no);
+
+
+          Data.innerHTML = AllData.map(htmlData);
+
+
+
+        } else if (storage.value === "Session Storage") {
+          AddData()
+          const newsection = [...sectionData];
+          const newArr = newsection.filter((item) => item.Roll_no !== roll_no);
+          newArr.push(oneDta)
+          AllData.push(oneDta)
+
+          window.sessionStorage.setItem("data", JSON.stringify(newArr));
+          // AllData = AllData.filter((item) => item.Roll_no !== roll_no);
+
+
+          Data.innerHTML = AllData.map(htmlData);
+
+
+
+
+        } else if (storage.value === "Cookie Storage") {
+          AddData()
+
+          const newCookie = [...AllDatac];
+          const newArr = newCookie.filter((item) => item.Roll_no !== roll_no);
+          newArr.push(oneDta)
+          AllData.push(oneDta)
+          console.log(AllData);
+          document.cookie = JSON.stringify(newArr);
+
+          // AllData = AllData.filter((item) => item.Roll_no !== roll_no);
+          console.log(oneDta);
+
+
+          Data.innerHTML = AllData.map(htmlData);
+
+
+
+        }
+
       }
-
-
-
-
-
-
-
-
-
-
-      if (storage.value === "Local Storage") {
-        AddData()
-        const newLocalSorage = [...localDatastring1];
-        const newArr = newLocalSorage.filter((item) => item.Roll_no !== roll_no);
-        newArr.push(oneDta)
-        AllData.push(oneDta)
-
-        window.localStorage.setItem("data", JSON.stringify(newArr));
-
-        console.log(newLocalSorage, 'werhjk');
-        // AllData = AllData.filter((item) => item.Roll_no !== roll_no);
-
-
-        Data.innerHTML = AllData.map(htmlData);
-
-
-
-      } else if (storage.value === "Session Storage") {
-        AddData()
-        const newsection = [...sectionData];
-        const newArr = newsection.filter((item) => item.Roll_no !== roll_no);
-        newArr.push(oneDta)
-        AllData.push(oneDta)
-
-        window.sessionStorage.setItem("data", JSON.stringify(newArr));
-        // AllData = AllData.filter((item) => item.Roll_no !== roll_no);
-
-
-        Data.innerHTML = AllData.map(htmlData);
-
-
-
-
-      } else if (storage.value === "Cookie Storage") {
-        AddData()
-
-        const newCookie = [...AllDatac];
-        const newArr = newCookie.filter((item) => item.Roll_no !== roll_no);
-        newArr.push(oneDta)
-        AllData.push(oneDta)
-        console.log(AllData);
-        document.cookie = JSON.stringify(newArr);
-
-        // AllData = AllData.filter((item) => item.Roll_no !== roll_no);
-        console.log(oneDta);
-
-
-        Data.innerHTML = AllData.map(htmlData);
-
-
-
-      }
-
     }
   })
 
@@ -411,5 +420,4 @@ submitBtn.addEventListener("click", () => {
     a.push(roll.value);
   }
   AllSudentRollNo.push(oneDta.Roll_no);
-  window.sectionData.setItem("Allroll", JSON.stringify(AllSudentRollNo));
 });
