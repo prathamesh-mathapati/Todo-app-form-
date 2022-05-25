@@ -1,166 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Primary Meta Tags -->
-    <title>Form</title>
-    <meta name="title" content="Form" />
-    <meta name="description" content="This is a form ." />
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://metatags.io/" />
-    <meta property="og:title" content="Form" />
-    <meta property="og:description" content="This is a form ." />
-    <meta
-      property="og:image"
-      content="https://i.postimg.cc/f3S3XSs6/form.jpg"
-    />
+<head>
+  <!-- Primary Meta Tags -->
+  <title>Form</title>
+  <meta name="title" content="Form" />
+  <meta name="description" content="This is a form ." />
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://metatags.io/" />
-    <meta property="twitter:title" content="Form" />
-    <meta property="twitter:description" content="This is a form ." />
-    <meta
-      property="twitter:image"
-      content="https://i.postimg.cc/f3S3XSs6/form.jpg"
-    />
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://i.postimg.cc/f3S3XSs6/form.jpg" rel="stylesheet" />
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://metatags.io/" />
+  <meta property="og:title" content="Form" />
+  <meta property="og:description" content="This is a form ." />
+  <meta property="og:image" content="https://i.postimg.cc/f3S3XSs6/form.jpg" />
 
-    <link rel="stylesheet" href="style.css" />
-    <title>Form</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-      crossorigin="anonymous"
-    />
-    <link rel="shortcut icon" href="/img/form.jpeg" type="image/x-icon" />
-  </head>
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://metatags.io/" />
+  <meta property="twitter:title" content="Form" />
+  <meta property="twitter:description" content="This is a form ." />
+  <meta property="twitter:image" content="https://i.postimg.cc/f3S3XSs6/form.jpg" />
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://i.postimg.cc/f3S3XSs6/form.jpg" rel="stylesheet" />
 
-  <body class="d-flex flex-row gap-5 p-5">
+  <link rel="stylesheet" href="style.css" />
+  <title>Form</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+  <link rel="shortcut icon" href="/img/form.jpeg" type="image/x-icon" />
+</head>
+
+<body class="d-flex flex-row gap-5 p-5">
+  <div class="containe d-flex justify-content-center container-fluid">
+    <form action="#" class="">
+      <div class="input-box d-flex flex-column gap-2 colour p-5">
+        <div class="myname">
+          <label for="fname">First Name</label>
+          <input onchange="(e)=>console.log(e.target.value)" type="text" id="fname" placeholder="Enter name:-"
+            required />
+        </div>
+
+        <div class="myname">
+          <label for="SSN">Subject</label>
+          <input type="text" id="SSN" placeholder="Enter Subject:-" required />
+        </div>
+
+        <div class="myname">
+          <label for="Zipcode">Roll no</label>
+          <input type="number" id="number" placeholder="Enter Roll no:-" required />
+        </div>
+
+        <div class="myname d-flex flex-column">
+          <label for="USA">Storage</label>
+          <select class="border-white bg-white fs-5 text-secondary Storage" name="" id="">
+            <option value="select">select</option>
+            <option value="Local Storage">Local Storage</option>
+            <option value="Session Storage">Session Storage</option>
+            <option value="Cookie Storage">Cookie Storage</option>
+          </select>
+        </div>
+
+        <div class="submit-1 hover1" id="sb">
+          <input class="submit" type="submit" value="Submit" />
+        </div>
+      </div>
+    </form>
+  </div>
+  <section class="editCard overlay hidden">
     <div class="containe d-flex justify-content-center container-fluid">
       <form action="#" class="">
-        <div class="input-box d-flex flex-column gap-2 colour p-5">
-          <div class="myname">
-            <label for="fname">First Name</label>
-            <input
-              onchange="(e)=>console.log(e.target.value)"
-              type="text"
-              id="fname"
-              placeholder="Enter name:-"
-              required
-            />
+        <div class="input-box m-5 bg d-flex flex-column gap-2 colour p-5">
+          <div class="name">
+            <label for="name">First Name</label>
+            <input onchange="(e)=>console.log(e.target.value)" type="text" id="name" placeholder="Enter name:-"
+              required />
           </div>
 
-          <div class="myname">
+          <div class="subject">
             <label for="SSN">Subject</label>
-            <input
-              type="text"
-              id="SSN"
-              placeholder="Enter Subject:-"
-              required
-            />
+            <input type="text" id="subject" placeholder="Enter Subject:-" required />
           </div>
 
-          <div class="myname">
+          <div class="roll">
             <label for="Zipcode">Roll no</label>
-            <input
-              type="number"
-              id="number"
-              placeholder="Enter Roll no:-"
-              required
-            />
+            <input type="number" id="roll" placeholder="Enter Roll no:-" required />
           </div>
 
           <div class="myname d-flex flex-column">
             <label for="USA">Storage</label>
-            <select
-              class="border-white bg-white fs-5 text-secondary Storage"
-              name=""
-              id=""
-            >
+            <select class="border-white bg-white fs-5 text-secondary storage" name="" id="">
               <option value="">select</option>
-              <option value="">Local Storage</option>
-              <option value="">Session Storage</option>
-              <option value="">Cookie Storage</option>
+              <option value="Local Storage">Local Storage</option>
+              <option value="Session Storage">Session Storage</option>
+              <option value="Cookie Storage">Cookie Storage</option>
             </select>
           </div>
 
-          <div class="submit-1 hover1" id="sb">
-            <input class="submit" type="submit" value="Submit" />
+          <div class="submit-1 save hover1" id="sb">
+            <input class="submit" type="submit" value="Save" />
           </div>
         </div>
       </form>
     </div>
-    <section class="editCard overlay hidden">
-      <div class="containe d-flex justify-content-center container-fluid">
-        <form action="#" class="">
-          <div class="input-box m-5 bg d-flex flex-column gap-2 colour p-5">
-            <div class="name">
-              <label for="name">First Name</label>
-              <input
-                onchange="(e)=>console.log(e.target.value)"
-                type="text"
-                id="name"
-                placeholder="Enter name:-"
-                required
-              />
-            </div>
+  </section>
 
-            <div class="subject">
-              <label for="SSN">Subject</label>
-              <input
-                type="text"
-                id="subject"
-                placeholder="Enter Subject:-"
-                required
-              />
-            </div>
+  <section class="container-fluid data d-flex gap-5 flex-wrap hover1"></section>
 
-            <div class="roll">
-              <label for="Zipcode">Roll no</label>
-              <input
-                type="number"
-                id="roll"
-                placeholder="Enter Roll no:-"
-                required
-              />
-            </div>
+  <div class="overlay hidden"></div>
 
-            <div class="myname d-flex flex-column">
-              <label for="USA">Storage</label>
-              <select
-                class="border-white bg-white fs-5 text-secondary storage"
-                name=""
-                id=""
-              >
-                <option value="">select</option>
-                <option value="">Local Storage</option>
-                <option value="">Session Storage</option>
-                <option value="">Cookie Storage</option>
-              </select>
-            </div>
+  <script src="./stript.js"></script>
+</body>
 
-            <div class="submit-1 save hover1" id="sb">
-              <input class="submit" type="submit" value="Save" />
-            </div>
-          </div>
-        </form>
-      </div>
-    </section>
-
-    <section
-      class="container-fluid data d-flex gap-5 flex-wrap hover1"
-    ></section>
-
-    <div class="overlay hidden"></div>
-
-    <script src="./stript.js"></script>
-  </body>
 </html>
