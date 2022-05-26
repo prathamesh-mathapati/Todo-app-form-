@@ -150,6 +150,7 @@ submitBtn.addEventListener("click", async () => {
 const DeleteData = (data) => {
   const roll_no = data.dataset.rollno;
   const deleteObj = AllData.find((item) => item.Roll_no === roll_no);
+  console.log(deleteObj);
   if (deleteObj.storage === "Local Storage") {
     const newLocalSorage = [...localDatastring1];
     localStorage.removeItem("data");
@@ -170,10 +171,12 @@ const DeleteData = (data) => {
     console.log(newLocalSorage);
     deleteAllCookies()
 
+
     const newArr = newLocalSorage.filter((item) => item.Roll_no !== roll_no);
     document.cookie = JSON.stringify(newArr);
     AllData = AllData.filter((item) => item.Roll_no !== roll_no);
     Data.innerHTML = AllData.map(htmlData);
+
   }
 };
 
