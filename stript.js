@@ -95,8 +95,13 @@ var a = [];
 // console.log(AllData);
 // console.log(a);
 
-submitBtn.addEventListener("click", async () => {
-  await location.reload()
+submitBtn.addEventListener("click", () => {
+  location.reload()
+  roll.value = ''
+  name.value = ''
+  nameInput = ''
+  storage.value = 'select'
+
   if (!roll.value || !name.value || !nameInput || storage.value == 'select') {
     alert("Please fill full from and select storage");
   }
