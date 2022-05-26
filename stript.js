@@ -88,8 +88,15 @@ try {
 //sumit butten
 
 var a = [];
-submitBtn.addEventListener("click", () => {
-  location.reload()
+
+// for (i of AllData) {
+//   a.push(i.Roll_no)
+// }
+// console.log(AllData);
+// console.log(a);
+
+submitBtn.addEventListener("click", async () => {
+  await location.reload()
   if (!roll.value || !name.value || !nameInput || storage.value == 'select') {
     alert("Please fill full from and select storage");
   }
@@ -100,6 +107,7 @@ submitBtn.addEventListener("click", () => {
     oneDta["Roll_no"] = roll.value;
     oneDta["storage"] = storage.value;
   };
+
 
   if (a.includes(roll.value)) {
     alert("This roll no is allredy exits, try another roll no");
@@ -309,4 +317,4 @@ const editDaata = (data) => {
 
 };
 
-// console.log(a);
+console.log(sectionData);
